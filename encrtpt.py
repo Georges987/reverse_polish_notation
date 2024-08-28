@@ -4,9 +4,10 @@ def rpn_converter(value):
     :param value: string
     :return: list
     """
-    print(value.split())
+    if type(value).__name__ == list:
+        value = "".join(value)
+    value = value.replace(")(", ")*(")
     value = [i for i in value]
-    print(value)
     stack = []
     rpn_list = []
     for i in value:
@@ -25,6 +26,7 @@ def rpn_converter(value):
                 stack.pop()
         else:
             print(f"Invalid character {i}")
+    print(stack)
     while stack:
         rpn_list.append(stack.pop())
     return rpn_list
